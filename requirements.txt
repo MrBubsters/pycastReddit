@@ -15,7 +15,6 @@ protobuf==3.6.1
 PyChromecast==2.3.0
 python-dateutil==2.7.3
 pytz==2018.5
-requests==2.19.1
 six==1.11.0
 update-checker==0.16
 urllib3==1.23

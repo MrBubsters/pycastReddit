@@ -5,7 +5,6 @@ import time
 import pychromecast.pychromecast as pychromecast
 from pychromecast.pychromecast.controllers.youtube import YouTubeController
 import configparser
-import os
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--subreddit', '-s', help="Subreddit to pull videos from. Must be video only posts", type= str)
