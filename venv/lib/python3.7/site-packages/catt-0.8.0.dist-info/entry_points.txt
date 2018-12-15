@@ -1,0 +1,3 @@
+[console_scripts]
+catt = catt.cli:main
+

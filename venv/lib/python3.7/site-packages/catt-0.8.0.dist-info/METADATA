@@ -1,0 +1,153 @@
+Metadata-Version: 2.1
+Name: catt
+Version: 0.8.0
+Summary: Cast All The Things allows you to send videos from many, many online sources to your Chromecast.
+Home-page: https://github.com/skorokithakis/catt
+Author: Stavros Korokithakis
+Author-email: hi@stavros.io
+License: BSD
+Keywords: chromecast cast catt cast_all_the_things
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Requires-Dist: youtube-dl (>=2017.3.15)
+Requires-Dist: PyChromecast (>=2.3.0)
+Requires-Dist: Click (>=5.0)
+Requires-Dist: netifaces (>=0.10.7)
+Requires-Dist: requests (>=2.18.4)
+
+===============================
+Cast All The Things
+===============================
+
+.. image:: https://img.shields.io/pypi/v/catt.svg
+        :target: https://pypi.python.org/pypi/catt
+
+.. image:: https://img.shields.io/travis/skorokithakis/catt.svg
+        :target: https://travis-ci.org/skorokithakis/catt
+
+.. image:: https://badges.gitter.im/Join%20Chat.svg
+        :target: https://gitter.im/skorokithakis/catt
+
+Cast All The Things allows you to send videos from many, many online sources
+(YouTube, Vimeo, and a few hundred others) to your Chromecast. It also allows
+you to cast local files or render websites.
+
+
+Installation
+------------
+
+You can install Cast All The Things with pip::
+
+    pip install catt
+
+
+``catt`` is only compatible with Python 3. If you need a Python 2-compatible
+version, please install ``0.5.6``, the last py2-compatible release.
+
+
+Usage
+-----
+
+To use Cast All The Things, just specify a URL::
+
+    catt cast "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+
+``catt`` supports any service that youtube-dl supports, which includes most online
+video hosting services.
+
+``catt`` can also cast local files (if they're in a format the Chromecast supports
+natively)::
+
+    catt cast ./myvideo.mp4
+
+You can also control your Chromecast through ``catt`` commands, for example with
+``catt pause``. Try running ``catt --help`` to see the full list of commands.
+
+If you have subtitles and the name is similar to the name of the local file, ``catt`` will add them automatically.
+You can, of course, specify any other subtitle if you want. Although Chromecast only supports WEBVTT,
+TTML and Line 21 subtitles, ``catt`` conveniently converts SRTs to WEBVTT for you on the fly. Here is how to use it::
+
+    catt cast -s ./mysubtitle.srt /myvideo.mp4
+
+``catt`` can also tell your Chromecast to display any website::
+
+    catt cast_site https://en.wikipedia.org/wiki/Rickrolling
+
+Please note that the Chromecast has a slow CPU but a reasonably recent version of Google Chrome. The display
+resolution is 1280x720.
+
+Configuration file
+""""""""""""""""""
+
+CATT can utilize a config-file stored at ``~/.config/catt/catt.cfg`` (``%APPDATA%\catt\catt.cfg`` on Windows).
+
+The format is as following::
+
+    [options]
+    device = chromecast_one
+
+    [aliases]
+    one = chromecast_one
+    two = chromecast_two
+
+In the ``[options]`` section, ``device`` denotes the default device that will
+be selected, when you have not selected a device via the cli.
+
+You can write your choice of default device to ``catt.cfg`` by doing::
+
+    catt -d <name_of_chromecast> write_config
+
+In the ``[aliases]`` section, you can specify aliases for the names of your
+chromecasts. You can then select a device just by doing::
+
+    catt -d <alias> <command>
+
+Currently, in order to take advantage of this functionality, you need to manually
+edit ``catt.cfg``
+
+Contributing
+------------
+
+If you want to contribute a feature to ``catt``, please open an issue (or comment on
+an existing one) first, to make sure it's something that the maintainers are
+interested in. Afterwards, just clone the repository and hack away!
+
+To run ``catt`` in development, you can use the following command::
+
+    python -m catt.cli --help
+
+Before committing, please make sure you install ``pre-commit`` and install its hooks::
+
+    pip install pre-commit
+    pre-commit install
+
+That's all, now you can commit and the hooks will run. Black (which is used to format
+the code) requires Python 3.6 to run, but please make the effort, as our CI will yell
+at you if the code is not formatted, and nobody wants that.
+
+
+Thanks!
+
+
+Info
+----
+
+* Free software: BSD license
+
+Features
+--------
+
+* Casts videos to Chromecast.
+* From `many, many online sources <http://rg3.github.io/youtube-dl/supportedsites.html>`_.
+* Casts local files (videos, photos and music)
+* Casts any website to Chromecast
+
+
+
