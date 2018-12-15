@@ -22,7 +22,7 @@ Once you have registered a new application for the Reddit API, PRAW will need 5 
 All of the dependencies are listed in requirements.txt and can be installed with the following command:
 
 ```
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 ```
 
 ## Running the script
