@@ -27,6 +27,11 @@ pip3 install -r requirements.txt
 
 ## Running the script
 
+Enter package directory
+```
+cd paiku
+```
+
 The command line interface accepts 3 arguments
 * --subreddit or -s
 * --count or -n
