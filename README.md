@@ -42,7 +42,11 @@ Running this command would pull the top 15 posts from /r/YoutubeHaiku and cast i
 ```
 python3 HaikuCast.py -s YoutubeHaiku -n 15 -c LivingRoom
 ```
-
+### NEW GUI
+Run gui.py to use the graphical interface
+```
+python3 gui.py
+```
 ## Built With
 
 * [pychromecast](https://github.com/balloob/pychromecast) - chromecast library for python3
