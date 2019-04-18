@@ -1,4 +1,3 @@
-#! usr/bin/python3
 import argparse
 import configparser
 import time
@@ -28,7 +27,7 @@ def input_args():
     return args
 
 
-def get_data(count):
+def get_data(count,subreddit):
     postDict = {'title': [], 'body': [], 'score': [], 'created': [], 'id': [], 'url': [], 'comm_count': []}
 
     config = configparser.ConfigParser()
@@ -39,7 +38,7 @@ def get_data(count):
                          username=config['PRAW']['username'], \
                          password=config['PRAW']['password'])
 
-    subreddit = reddit.subreddit(args.subreddit)
+    subreddit = reddit.subreddit(subreddit)
     for submission in subreddit.hot(limit = count):
         postDict['title'].append(submission.title)
         postDict['url'].append(submission.url)
@@ -51,10 +50,10 @@ def get_ID(link):
     return id
 
 
-def cast(postDict):
+def cast(postDict,cast):
     i = 1
     chromecasts = pychromecast.get_chromecasts()
-    cast = next(cc for cc in chromecasts if cc.device.friendly_name == args.cast)
+    cast = next(cc for cc in chromecasts if cc.device.friendly_name == cast)
     cast.wait()
     yt = YouTubeController()
     for value in postDict['url']:
@@ -74,4 +73,4 @@ def cast(postDict):
 
 if __name__ == '__main__':
     args = input_args()
-    cast(get_data(args.count))
+    cast(get_data(args.count,args.subreddit),args.cast)
