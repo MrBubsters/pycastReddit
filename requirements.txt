@@ -17,6 +17,6 @@ python-dateutil==2.7.3
 pytz==2018.5
 six==1.11.0
 update-checker==0.16
-urllib3==1.23
+urllib3==1.24.2
 youtube-dl==2018.9.18
 zeroconf==0.21.2
